@@ -16,8 +16,18 @@ to prevent the Pi from using the serial port for login or console-logging.
 # Classes
 This module contains a single class, PiLite, which you must instantiate to
 initialise the serial port using, for example:
+```
 pilite=PiLite()
+```
 Then call the other methods using the pilite object.
+
+## A note on co-ordinates
+The PiLite has 9 rows each containing 14 LEDs.  In this library I have chosen
+to stick to the more usual convention of numbering from 0, rather than Ciseco's
+preferred convention of numbering from 1.
+So, if you use $$$ commands directly, the rows are numbered 1-9 and the columns
+1-14, but if you call the methods provided by this module, they are numbered
+0-8 and 0-13 respectively.
 
 ## PiLite methods
 
@@ -35,50 +45,50 @@ this will wait too long in most cases.
 Send a $$$ command - just pass the command itself to this function without the
 $$$ at the beginning or the CR at the end
 
-### all_on():
+### all_on()
 Switch on all LEDs
 
-### all_off():
+### all_off()
 Switch off all LEDs
 
-### set_speed(speed):
+### set_speed(speed)
 Set the display speed.  The parameter is the number of milliseconds between each
 column scrolling off the display.
 
-### set_fb(fb):
+### set_fb(fb)
 Set the "frame buffer".  fb is a string of "1" and "0" for each pixel, starting
 with the top row from left to right.
 
-### set_bar(index,value):
+### set_bar(index,value)
 Assuming a vertical bar graph using each column of the display, set column
 "index" to percentage "value".  Columns are indexed 0-13 from left to right
 
-### set_vu(index,value):
+### set_vu(index,value)
 Assuming a horizontal bar graph with each bar using 5 rows of the display, set
 row "index" to percentage "value".  Rows are indexed 0-1 from top to bottom.
 
-### set_pixel(x,y,state):
+### set_pixel(x,y,state)
 Set pixel at "x,y" to "state" where state can be one of "ON", "OFF" or "TOGGLE".
 
-### pixel_on(x,y):
+### pixel_on(x,y)
 Switch on pixel at "x,y"
 
-### pixel_off(x,y):
+### pixel_off(x,y)
 Switch off pixel at "x,y"
 
-### toggle_pixel(x,y):
+### toggle_pixel(x,y)
 Toggle pixel at "x,y"
 
-### scroll(value):
+### scroll(value)
 Scroll the whole display "value" columns to the left.  Use negative values to
 scroll to the right.
 
-### scroll_left(value):
+### scroll_left(value)
 Scroll the whole display "value" columns to the left.
 
-### scroll_right(value):
+### scroll_right(value)
 Scroll the whole display "value" columns to the right.
 
-### display_char(x,y,char):
+### display_char(x,y,char)
 Display character "char" with its top left at "x,y"
 
