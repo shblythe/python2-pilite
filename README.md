@@ -17,9 +17,12 @@ to prevent the Pi from using the serial port for login or console-logging.
 This module contains a single class, PiLite, which you must instantiate to
 initialise the serial port using, for example:
 ```
-pilite=PiLite()
+import pilite
+pilite=pilite.PiLite()
 ```
-Then call the other methods using the pilite object.
+Then call the other methods using the `pilite` object.
+
+The file `test.py` shows examples of use.
 
 ## A note on co-ordinates
 The PiLite has 9 rows each containing 14 LEDs.  In this library I have chosen
