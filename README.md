@@ -62,6 +62,14 @@ column scrolling off the display.
 Set the "frame buffer".  fb is a string of "1" and "0" for each pixel, starting
 with the top row from left to right.
 
+### set_fb_pic(pattern)
+Set the "frame buffer".  All whitespace is removed from pattern, plus x/y axes are
+transposed in the string, and '.' and '*' may be used in place of '0' and '1'.
+This allows more "friendly" multi-line string pictures to be passed.
+
+### set_fb_random()
+Sets the "frame buffer" to a random pattern of pixels.
+
 ### set_bar(index,value)
 Assuming a vertical bar graph using each column of the display, set column
 "index" to percentage "value".  Columns are indexed 0-13 from left to right
