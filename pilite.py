@@ -12,6 +12,7 @@ Stephen Blythe 2014
 import serial
 import sys
 import time
+import random
 
 class PiLite:
     """Functions to control the PiLite.  Instantiate the class to initialise
@@ -75,6 +76,26 @@ class PiLite:
 	"""Set the "frame buffer".  fb is a string of "1" and "0" for each pixel
 	"""
 	self.send_cmd("F"+fb)
+ 
+    def set_fb_pic(self,pattern):
+	"""Set the "frame buffer".  This allows "nice" string to be sent,
+	because it first removes all whitespace, then transposes so that the X
+	and Y axes are swapped, so what is seen in the file matches what will be
+	seen on the screen.  Also '.' and '*' can be used in place of 0 and 1.
+	"""
+	pattern=''.join(pattern.split()) # Remove whitespace
+	pattern=pattern.replace('*','1')
+	pattern=pattern.replace('.','0')
+	fb=''
+	for x in range(14):
+	    for y in range(9):
+		fb+=pattern[y*14+x]
+	self.set_fb(fb)
+
+    def set_fb_random(self):
+	"""Set the "frame buffer" to a random pattern"""
+	pattern=''.join([random.choice(['0','1']) for i in xrange(14*9)])
+	self.set_fb(pattern)
 
     def _set_indexed_value(self,cmd,index,value):
 	self.send_cmd(cmd+str(index+1)+","+str(value))
